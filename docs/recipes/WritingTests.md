@@ -4,17 +4,17 @@ Because most of the Redux code you write are functions, and many of them are pur
 
 ### Setting Up
 
-We recommend [Mocha](http://mochajs.org/) as the testing engine.
-Note that it runs in a Node environment, so you won’t have access to the DOM.
+We recommend [Jest](http://facebook.github.io/jest/) as the testing engine.
+Note that it runs in a Node environment, so you won't have access to the DOM.
 
 ```
-npm install --save-dev mocha
+npm install --save-dev jest
 ```
 
-To use it together with [Babel](http://babeljs.io), you will need to install `babel-register`:
+To use it together with [Babel](http://babeljs.io), you will need to install `babel-jest`:
 
 ```js
-npm install --save-dev babel-register
+npm install --save-dev babel-jest
 ```
 
 and configure it to use ES2015 features in `.babelrc`:
@@ -32,8 +32,8 @@ Then, add this to `scripts` in your `package.json`:
   ...
   "scripts": {
     ...
-    "test": "mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   ...
 }
@@ -58,7 +58,6 @@ export function addTodo(text) {
 can be tested like:
 
 ```js
-import expect from 'expect'
 import * as actions from '../../actions/TodoActions'
 import * as types from '../../constants/ActionTypes'
 
@@ -76,11 +75,13 @@ describe('actions', () => {
 
 ### Async Action Creators
 
-For async action creators using [Redux Thunk](https://github.com/gaearon/redux-thunk) or other middleware, it’s best to completely mock the Redux store for tests. You can apply the middleware to a mock store using [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store). You can also use [nock](https://github.com/pgte/nock) to mock the HTTP requests.
+For async action creators using [Redux Thunk](https://github.com/gaearon/redux-thunk) or other middleware, it's best to completely mock the Redux store for tests. You can apply the middleware to a mock store using [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store). You can also use [nock](https://github.com/pgte/nock) to mock the HTTP requests.
 
 #### Example
 
 ```js
+import fetch from 'isomorphic-fetch';
+
 function fetchTodosRequest() {
   return {
     type: FETCH_TODOS_REQUEST
@@ -151,7 +152,7 @@ describe('async actions', () => {
 
 ### Reducers
 
-A reducer should return the new state after applying the action to the previous state, and that’s the behavior tested below.
+A reducer should return the new state after applying the action to the previous state, and that's the behavior tested below.
 
 #### Example
 
@@ -186,7 +187,6 @@ export default function todos(state = initialState, action) {
 can be tested like:
 
 ```js
-import expect from 'expect'
 import reducer from '../../reducers/todos'
 import * as types from '../../constants/ActionTypes'
 
@@ -298,14 +298,13 @@ export default Header
 can be tested like:
 
 ```js
-import expect from 'expect'
 import React from 'react'
 import { shallow } from 'enzyme'
 import Header from '../../components/Header'
 
 function setup() {
   const props = {
-    addTodo: expect.createSpy()
+    addTodo: jest.fn()
   }
 
   const enzymeWrapper = shallow(<Header {...props} />)
@@ -334,9 +333,9 @@ describe('components', () => {
       const { enzymeWrapper, props } = setup()
       const input = enzymeWrapper.find('TodoTextInput')
       input.props().onSave('')
-      expect(props.addTodo.calls.length).toBe(0)
+      expect(props.addTodo.mock.calls.length).toBe(0)
       input.props().onSave('Use Redux')
-      expect(props.addTodo.calls.length).toBe(1)
+      expect(props.addTodo.mock.calls.length).toBe(1)
     })
   })
 })
@@ -363,7 +362,7 @@ In a unit test, you would normally import the `App` component like this:
 import App from './App'
 ```
 
-However, when you import it, you’re actually holding the wrapper component returned by `connect()`, and not the `App` component itself. If you want to test its interaction with Redux, this is good news: you can wrap it in a [`<Provider>`](https://github.com/reactjs/react-redux#provider-store) with a store created specifically for this unit test. But sometimes you want to test just the rendering of the component, without a Redux store.
+However, when you import it, you're actually holding the wrapper component returned by `connect()`, and not the `App` component itself. If you want to test its interaction with Redux, this is good news: you can wrap it in a [`<Provider>`](https://github.com/reactjs/react-redux#provider-store) with a store created specifically for this unit test. But sometimes you want to test just the rendering of the component, without a Redux store.
 
 In order to be able to test the App component itself without having to deal with the decorator, we recommend you to also export the undecorated component:
 
@@ -377,7 +376,7 @@ export class App extends Component { /* ... */ }
 export default connect(mapStateToProps)(App)
 ```
 
-Since the default export is still the decorated component, the import statement pictured above will work as before so you won’t have to change your application code. However, you can now import the undecorated `App` components in your test file like this:
+Since the default export is still the decorated component, the import statement pictured above will work as before so you won't have to change your application code. However, you can now import the undecorated `App` components in your test file like this:
 
 ```js
 // Note the curly braces: grab the named export instead of default export
@@ -409,7 +408,6 @@ Middleware functions wrap behavior of `dispatch` calls in Redux, so to test this
 #### Example
 
 ```js
-import expect from 'expect'
 import * as types from '../../constants/ActionTypes'
 import singleDispatch from '../../middleware/singleDispatch'
 
@@ -457,4 +455,4 @@ describe('middleware', () => {
 
 - [React Test Utils](http://facebook.github.io/react/docs/test-utils.html): Test Utilities for React. Used by Enzyme.
 
-- [Shallow rendering](http://airbnb.io/enzyme/docs/api/shallow.html): Shallow rendering lets you instantiate a component and effectively get the result of its `render` method just a single level deep instead of rendering components recursively to a DOM. Shallow rendering is useful for unit tests, where you test a particular component only, and importantly not its children. This also means that changing a child component won’t affect the tests for the parent component. Testing a component and all its children can be accomplished with [Enzyme's `mount()` method](http://airbnb.io/enzyme/docs/api/mount.html), aka full DOM rendering.
+- [Shallow rendering](http://airbnb.io/enzyme/docs/api/shallow.html): Shallow rendering lets you instantiate a component and effectively get the result of its `render` method just a single level deep instead of rendering components recursively to a DOM. Shallow rendering is useful for unit tests, where you test a particular component only, and importantly not its children. This also means that changing a child component won't affect the tests for the parent component. Testing a component and all its children can be accomplished with [Enzyme's `mount()` method](http://airbnb.io/enzyme/docs/api/mount.html), aka full DOM rendering.

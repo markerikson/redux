@@ -28,7 +28,7 @@ export var ActionTypes = {
  * If you use `combineReducers` to produce the root reducer function, this must be
  * an object with the same shape as `combineReducers` keys.
  *
- * @param {Function} enhancer The store enhancer. You may optionally specify it
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
  * to enhance the store with third-party capabilities such as middleware,
  * time travel, persistence, etc. The only store enhancer that ships with Redux
  * is `applyMiddleware()`.
@@ -174,7 +174,8 @@ export default function createStore(reducer, preloadedState, enhancer) {
 
     var listeners = currentListeners = nextListeners
     for (var i = 0; i < listeners.length; i++) {
-      listeners[i]()
+      var listener = listeners[i]
+      listener()
     }
 
     return action

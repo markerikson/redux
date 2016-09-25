@@ -4,7 +4,7 @@ Redux is a tiny library, but its contracts and APIs are carefully chosen to spaw
 
 For an extensive list of everything related to Redux, we recommend [Awesome Redux](https://github.com/xgrommx/awesome-redux). It contains examples, boilerplates, middleware, utility libraries, and more. [React/Redux Links](https://github.com/markerikson/react-redux-links) contains tutorials and other useful resources for anyone learning React or Redux, and [Redux Ecosystem Links](https://github.com/markerikson/redux-ecosystem-links) lists many Redux-related libraries and addons.
 
-On this page we will only feature a few of them that the Redux maintainers have vetted personally. Don’t let this discourage you from trying the rest of them! The ecosystem is growing too fast, and we have a limited time to look at everything. Consider these the “staff picks”, and don’t hesitate to submit a PR if you’ve built something wonderful with Redux.
+On this page we will only feature a few of them that the Redux maintainers have vetted personally. Don't let this discourage you from trying the rest of them! The ecosystem is growing too fast, and we have a limited time to look at everything. Consider these the “staff picks”, and don't hesitate to submit a PR if you've built something wonderful with Redux.
 
 ## Learning Redux
 
@@ -18,13 +18,14 @@ On this page we will only feature a few of them that the Redux maintainers have 
 * [Official Examples](Examples.md) — A few official examples covering different Redux techniques
 * [SoundRedux](https://github.com/andrewngu/sound-redux) — A SoundCloud client built with Redux
 * [grafgiti](https://github.com/mohebifar/grafgiti) — Create graffiti on your GitHub contributions wall
+* [React-lego](https://github.com/peter-mouland/react-lego) — How to plug into React, one block at a time.
 
 ### Tutorials and Articles
 
 * [Redux Tutorial](https://github.com/happypoulp/redux-tutorial)
 * [Redux Egghead Course Notes](https://github.com/tayiorbeii/egghead.io_redux_course_notes)
 * [Integrating Data with React Native](http://makeitopen.com/tutorials/building-the-f8-app/data/)
-* [What the Flux?! Let’s Redux.](https://blog.andyet.com/2015/08/06/what-the-flux-lets-redux)
+* [What the Flux?! Let's Redux.](https://blog.andyet.com/2015/08/06/what-the-flux-lets-redux)
 * [Leveling Up with React: Redux](https://css-tricks.com/learning-react-redux/)
 * [A cartoon intro to Redux](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6)
 * [Understanding Redux](http://www.youhavetolearncomputers.com/blog/2015/9/15/a-conceptual-overview-of-redux-or-how-i-fell-in-love-with-a-javascript-state-container)
@@ -61,8 +62,7 @@ On this page we will only feature a few of them that the Redux maintainers have 
 * [redux-thunk](http://github.com/gaearon/redux-thunk) — The easiest way to write async action creators
 * [redux-promise](https://github.com/acdlite/redux-promise) — [FSA](https://github.com/acdlite/flux-standard-action)-compliant promise middleware
 * [redux-axios-middleware](https://github.com/svrcekmichal/redux-axios-middleware) — Redux middleware for fetching data with axios HTTP client
-* [redux-observable](https://github.com/blesh/redux-observable/) — RxJS middleware for Redux
-* [redux-rx](https://github.com/acdlite/redux-rx) — RxJS utilities for Redux, including a middleware for Observable
+* [redux-observable](https://github.com/redux-observable/redux-observable/) — RxJS middleware for action side effects using "Epics"
 * [redux-logger](https://github.com/fcomb/redux-logger) — Log every Redux action and the next state
 * [redux-immutable-state-invariant](https://github.com/leoasis/redux-immutable-state-invariant) — Warns about state mutations in development
 * [redux-unhandled-action](https://github.com/socialtables/redux-unhandled-action) — Warns about actions that produced no state changes in development
@@ -108,6 +108,7 @@ On this page we will only feature a few of them that the Redux maintainers have 
 * [redux-tcomb](https://github.com/gcanti/redux-tcomb) — Immutable and type-checked state and actions for Redux
 * [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store) — Mock redux store for testing your app
 * [redux-actions-assertions](https://github.com/dmitry-zaets/redux-actions-assertions) — Assertions for Redux actions testing
+* [redux-bootstrap](https://github.com/remojansen/redux-bootstrap) — Bootstrapping function for Redux applications
 
 ### DevTools
 

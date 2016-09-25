@@ -18,7 +18,7 @@
   * [Async Actions](/docs/advanced/AsyncActions.md)
   * [Async Flow](/docs/advanced/AsyncFlow.md)
   * [Middleware](/docs/advanced/Middleware.md)
-  * Usage with React Router
+  * [Usage with React Router](/docs/advanced/UsageWithReactRouter.md)
   * [Example: Reddit API](/docs/advanced/ExampleRedditAPI.md)
   * Next Steps
 * [Recipes](/docs/recipes/README.md)
@@ -29,6 +29,7 @@
   * [Writing Tests](/docs/recipes/WritingTests.md)
   * [Computing Derived Data](/docs/recipes/ComputingDerivedData.md)
   * [Implementing Undo History](/docs/recipes/ImplementingUndoHistory.md)
+  * [Isolating Subapps](/docs/recipes/IsolatingSubapps.md)
 * [FAQ](/docs/FAQ.md)
 * [Troubleshooting](/docs/Troubleshooting.md)
 * [Glossary](/docs/Glossary.md)
